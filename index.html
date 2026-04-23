@@ -13,22 +13,24 @@ body {
   overflow-x: hidden;
 }
 
-/* PERSONAGENS (FUNDO) */
-.pekka {
+/* IMAGENS ESTRATÉGICAS */
+.img-left {
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 180px;
-  opacity: 0.08;
+  width: 220px;
+  opacity: 0.15;
+  mix-blend-mode: lighten;
   pointer-events: none;
 }
 
-.mega {
+.img-right {
   position: fixed;
   bottom: 0;
   right: 0;
-  width: 180px;
-  opacity: 0.08;
+  width: 220px;
+  opacity: 0.15;
+  mix-blend-mode: lighten;
   pointer-events: none;
 }
 
@@ -44,6 +46,7 @@ body {
   gap: 30px;
   z-index: 1000;
 }
+
 .top-bar a {
   color: white;
   text-decoration: none;
@@ -55,12 +58,16 @@ body {
   display: flex;
   justify-content: space-around;
   margin-top: 80px;
+  flex-wrap: wrap;
 }
+
 .grafico {
   background: white;
   padding: 20px;
   border-radius: 10px;
+  margin: 10px;
 }
+
 .grafico img {
   width: 300px;
 }
@@ -70,8 +77,10 @@ body {
   text-align: center;
   margin-top: 40px;
 }
+
 .tabela img {
-  width: 600px;
+  width: 90%;
+  max-width: 600px;
 }
 
 /* CALCULADORA */
@@ -124,13 +133,14 @@ button {
   justify-content: center;
   gap: 50px;
 }
+
 .bottom-bar a {
   color: white;
   text-decoration: none;
   font-weight: bold;
 }
 
-/* NÓS ANIMADO */
+/* NÓS */
 .nos {
   position: fixed;
   bottom: 80px;
@@ -143,22 +153,21 @@ button {
   font-size: 14px;
   opacity: 0;
   transition: 0.3s;
-  pointer-events: none;
 }
 
 .nos.ativo {
   opacity: 1;
   transform: translateX(-50%) scale(1);
-  pointer-events: auto;
 }
 </style>
 </head>
 
 <body>
 
-<!-- PERSONAGENS -->
-<img src="https://static.wikia.nocookie.net/clashroyale/images/4/49/PEKKA.png" class="pekka">
-<img src="https://static.wikia.nocookie.net/clashroyale/images/7/7c/Mega_Knight.png" class="mega">
+<!-- SUAS IMAGENS -->
+<img src="https://th.bing.com/th/id/OIP.aHItRlopN0T9d_PBs0FLUgAAAA?w=133&h=180&c=7&r=0&o=7&pid=1.7&rm=3" class="img-left">
+
+<img src="https://th.bing.com/th/id/OIP.yPk5WXjoCEbUcGspT8SRvAHaHa?w=194&h=195&c=7&r=0&o=7&pid=1.7&rm=3" class="img-right">
 
 <!-- TOPO -->
 <div class="top-bar">
@@ -187,7 +196,6 @@ button {
 <!-- CALCULADORA -->
 <div class="calculadora-box" id="calcBox">
   <h2>Calculadora 2000</h2>
-  
   <input id="numeros" placeholder="Ex: 10, 20, 30">
 
   <br>
@@ -195,9 +203,6 @@ button {
   <button onclick="media()">Média</button>
   <button onclick="moda()">Moda</button>
   <button onclick="mediana()">Mediana</button>
-  <button onclick="soma()">Soma</button>
-  <button onclick="maximo()">Máx</button>
-  <button onclick="minimo()">Mín</button>
   <button onclick="limpar()">Limpar</button>
 
   <p id="res"></p>
@@ -225,10 +230,6 @@ function fecharCalc() {
   document.getElementById("calcBox").classList.remove("ativa");
 }
 
-window.addEventListener("scroll", () => {
-  document.getElementById("calcBox").classList.add("ativa");
-});
-
 function pegarNumeros() {
   return document.getElementById("numeros").value
     .split(",")
@@ -236,57 +237,34 @@ function pegarNumeros() {
     .filter(n => !isNaN(n));
 }
 
-function res(txt) {
-  document.getElementById("res").innerText = txt;
-}
-
-function erro() {
-  res("Digite números válidos!");
-}
-
 function media() {
   let n = pegarNumeros();
-  if (!n.length) return erro();
-  res("Média: " + (n.reduce((a,b)=>a+b,0)/n.length));
+  if (!n.length) return;
+  document.getElementById("res").innerText =
+    "Média: " + (n.reduce((a,b)=>a+b,0)/n.length);
 }
 
 function moda() {
   let n = pegarNumeros();
-  if (!n.length) return erro();
+  if (!n.length) return;
   let f = {};
   n.forEach(x => f[x]=(f[x]||0)+1);
   let max = Math.max(...Object.values(f));
-  res("Moda: " + Object.keys(f).filter(x=>f[x]==max).join(","));
+  document.getElementById("res").innerText =
+    "Moda: " + Object.keys(f).filter(x=>f[x]==max).join(",");
 }
 
 function mediana() {
   let n = pegarNumeros().sort((a,b)=>a-b);
-  if (!n.length) return erro();
+  if (!n.length) return;
   let m = Math.floor(n.length/2);
-  res("Mediana: " + (n.length%2 ? n[m] : (n[m-1]+n[m])/2));
-}
-
-function soma() {
-  let n = pegarNumeros();
-  if (!n.length) return erro();
-  res("Soma: " + n.reduce((a,b)=>a+b,0));
-}
-
-function maximo() {
-  let n = pegarNumeros();
-  if (!n.length) return erro();
-  res("Máximo: " + Math.max(...n));
-}
-
-function minimo() {
-  let n = pegarNumeros();
-  if (!n.length) return erro();
-  res("Mínimo: " + Math.min(...n));
+  document.getElementById("res").innerText =
+    "Mediana: " + (n.length%2 ? n[m] : (n[m-1]+n[m])/2);
 }
 
 function limpar() {
   document.getElementById("numeros").value = "";
-  res("");
+  document.getElementById("res").innerText = "";
 }
 
 function mostrarNos() {
