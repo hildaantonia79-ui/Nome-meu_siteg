@@ -9,7 +9,7 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      background: linear-gradient(135deg, #2b6cb0, #1e3c72);
       color: white;
     }
 
@@ -69,10 +69,14 @@
       padding: 10px 18px;
       border: none;
       border-radius: 8px;
-      background: linear-gradient(135deg, #ff7e5f, #feb47b);
+      background: linear-gradient(135deg, #2b6cb0, #4c8ed9);
       color: white;
       font-weight: bold;
       cursor: pointer;
+    }
+
+    button:hover {
+      transform: scale(1.05);
     }
 
     .bottom-bar {
@@ -86,13 +90,11 @@
       background: rgba(0,0,0,0.7);
     }
 
-    /* Container do botão Nós */
+    /* NOS */
     .nos-container {
       position: relative;
-      display: inline-block;
     }
 
-    /* Texto pequeno acima */
     .nos-texto {
       position: absolute;
       bottom: 40px;
@@ -106,6 +108,7 @@
       white-space: nowrap;
     }
 
+    /* POPUP */
     .overlay {
       position: fixed;
       width: 100%;
@@ -114,13 +117,16 @@
       display: none;
       justify-content: center;
       align-items: center;
+      z-index: 2000;
     }
 
     .card {
-      background: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
       padding: 30px;
       border-radius: 15px;
       text-align: center;
+      width: 300px;
     }
 
     input {
@@ -209,12 +215,7 @@
 
     document.getElementById("btnNos").onclick = () => {
       const texto = document.getElementById("nosTexto");
-
-      if (texto.style.display === "block") {
-        texto.style.display = "none";
-      } else {
-        texto.style.display = "block";
-      }
+      texto.style.display = texto.style.display === "block" ? "none" : "block";
     };
   </script>
 
