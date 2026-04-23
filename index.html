@@ -2,49 +2,95 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mega Cavaleiro X P.E.K.K.A</title>
 
   <style>
     body {
       margin: 0;
-      font-family: Arial;
-      background: linear-gradient(135deg, #2b6cb0, #1e3c72);
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
       color: white;
     }
 
     .top-bar {
+      position: fixed;
+      top: 0;
+      width: 100%;
       padding: 15px;
       display: flex;
       justify-content: center;
       gap: 30px;
       background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
+
+    .top-bar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .top-bar a:hover {
+      color: #ffd700;
     }
 
     .container {
       display: flex;
       justify-content: space-around;
-      margin-top: 30px;
+      margin-top: 90px;
+      padding: 20px;
+      flex-wrap: wrap;
+      gap: 20px;
     }
 
     .grafico {
       background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
       padding: 20px;
-      border-radius: 10px;
       text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+
+    .grafico:hover {
+      transform: scale(1.05);
     }
 
     .grafico img {
       width: 280px;
+      border-radius: 10px;
     }
 
     .tabela {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 30px;
     }
 
     .tabela img {
       width: 80%;
       max-width: 600px;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    }
+
+    button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #ff7e5f, #feb47b);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
 
     .bottom-bar {
@@ -54,79 +100,135 @@
       padding: 15px;
       display: flex;
       justify-content: center;
-      gap: 40px;
+      gap: 20px;
       background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
     }
 
-    button {
-      padding: 10px;
-      border: none;
-      border-radius: 6px;
-      background: #2b6cb0;
-      color: white;
-      cursor: pointer;
-    }
-
-    .nos-container {
-      position: relative;
-    }
-
-    .nos-texto {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 11px;
-      background: black;
-      padding: 5px;
+    .overlay {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
       display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(15px);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      width: 300px;
+      animation: aparecer 0.3s ease;
+    }
+
+    @keyframes aparecer {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    input {
+      padding: 8px;
+      width: 80%;
+      border-radius: 6px;
+      border: none;
+      margin-top: 10px;
+    }
+
+    .nos {
+      text-align: center;
+      margin-bottom: 80px;
+      display: none;
+      font-size: 14px;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
 
-<div class="top-bar">
-  <span>Tabela</span>
-  <span>Pizza</span>
-  <span>Barras</span>
-</div>
-
-<div class="container">
-  <div class="grafico">
-    <h2>Pizza</h2>
-    <img src="https://loyal-sapphire-hpke3bfl0l.edgeone.app/pizza.png">
+  <div class="top-bar">
+    <a href="#">Tabela</a>
+    <a href="#">Pizza</a>
+    <a href="#">Barras</a>
   </div>
 
-  <div class="grafico">
-    <h2>Barras</h2>
-    <img src="https://mild-magenta-awv90mntvu.edgeone.app/grafico.png">
-  </div>
-</div>
-
-<div class="tabela">
-  <img src="https://outdoor-beige-bv4bfzfcpq.edgeone.app/tabela.png">
-</div>
-
-<div class="bottom-bar">
-  <!-- AQUI ENTRA NA OUTRA PÁGINA -->
-  <a href="calculadora.html">
-    <button>Calculadora</button>
-  </a>
-
-  <div class="nos-container">
-    <div class="nos-texto" id="nosTexto">
-      João Guilherme, Guilherme Batista, Nathan
+  <div class="container">
+    <div class="grafico">
+      <h2>Pizza</h2>
+      <img src="https://loyal-sapphire-hpke3bfl0l.edgeone.app/pizza.png">
     </div>
-    <button onclick="mostrarNos()">Nós</button>
-  </div>
-</div>
 
-<script>
-function mostrarNos() {
-  const t = document.getElementById("nosTexto");
-  t.style.display = t.style.display === "block" ? "none" : "block";
-}
-</script>
+    <div class="grafico">
+      <h2>Barras</h2>
+      <img src="https://mild-magenta-awv90mntvu.edgeone.app/grafico.png">
+    </div>
+  </div>
+
+  <div class="tabela">
+    <img src="https://outdoor-beige-bv4bfzfcpq.edgeone.app/tabela.png">
+  </div>
+
+  <!-- POPUP -->
+  <div class="overlay" id="overlay">
+    <div class="card">
+      <h2>Calculadora 2000</h2>
+      <input type="text" id="operacao" placeholder="media, moda ou mediana">
+      <br><br>
+      <button id="calcularBtn">Calcular</button>
+      <button id="fecharBtn">Fechar</button>
+      <p id="resultado"></p>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <button id="abrirCalc">Calculadora</button>
+    <button id="btnNos">Nós</button>
+  </div>
+
+  <div class="nos" id="nos">
+    Site feito por: João Guilherme, Guilherme Batista, Nathan
+  </div>
+
+  <script>
+    const overlay = document.getElementById("overlay");
+
+    document.getElementById("abrirCalc").onclick = () => {
+      overlay.style.display = "flex";
+    };
+
+    document.getElementById("fecharBtn").onclick = () => {
+      overlay.style.display = "none";
+    };
+
+    overlay.onclick = (e) => {
+      if (e.target === overlay) overlay.style.display = "none";
+    };
+
+    document.getElementById("calcularBtn").onclick = () => {
+      const op = document.getElementById("operacao").value.toLowerCase().trim();
+      let res = "";
+
+      if (op === "media") {
+        res = "Média = " + (253 + 247) / 2;
+      } else if (op === "moda") {
+        res = "Moda = 253, 247";
+      } else if (op === "mediana") {
+        res = "Mediana = " + (253 + 247) / 2;
+      } else {
+        res = "Digite certo 😅";
+      }
+
+      document.getElementById("resultado").innerText = res;
+    };
+
+    document.getElementById("btnNos").onclick = () => {
+      document.getElementById("nos").style.display = "block";
+    };
+  </script>
 
 </body>
 </html>
