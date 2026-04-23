@@ -8,21 +8,21 @@
   <style>
     body {
       margin: 0;
-      background: linear-gradient(135deg, #2b6cb0, #805ad5);
       font-family: Arial, sans-serif;
-      min-height: 100vh;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
     }
 
     .top-bar {
       position: fixed;
       top: 0;
       width: 100%;
-      background: #111d2b;
-      color: white;
       padding: 15px;
       display: flex;
       justify-content: center;
       gap: 30px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
       z-index: 1000;
     }
 
@@ -30,59 +30,101 @@
       color: white;
       text-decoration: none;
       font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .top-bar a:hover {
+      color: #ffd700;
     }
 
     .container {
       display: flex;
       justify-content: space-around;
-      margin-top: 80px;
+      margin-top: 90px;
       padding: 20px;
+      flex-wrap: wrap;
+      gap: 20px;
     }
 
     .grafico {
-      background: white;
-      border-radius: 12px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
       padding: 20px;
       text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+
+    .grafico:hover {
+      transform: scale(1.05);
     }
 
     .grafico img {
-      width: 300px;
-      border-radius: 8px;
-    }
-
-    .tabela {
-      display: flex;
-      justify-content: center;
-      margin-top: 40px;
-    }
-
-    .tabela img {
-      width: 600px;
+      width: 280px;
       border-radius: 10px;
     }
 
-    /* FUNDO ESCURO (overlay) */
+    .tabela {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .tabela img {
+      width: 80%;
+      max-width: 600px;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    }
+
+    /* BOTÕES */
+    button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #ff7e5f, #feb47b);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+    }
+
+    /* POPUP */
     .overlay {
       position: fixed;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.7);
       display: none;
       justify-content: center;
       align-items: center;
       z-index: 2000;
     }
 
-    /* POPUP */
     .card {
-      background: white;
-      border-radius: 12px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(15px);
       padding: 30px;
+      border-radius: 15px;
       text-align: center;
-      width: 320px;
+      width: 300px;
       animation: aparecer 0.3s ease;
     }
 
@@ -94,34 +136,17 @@
     input {
       padding: 8px;
       width: 80%;
-    }
-
-    button {
-      padding: 10px 15px;
-      background: #2b6cb0;
-      color: white;
-      border: none;
       border-radius: 6px;
-      cursor: pointer;
-      margin: 5px;
-    }
-
-    .bottom-bar {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      background: #2b6cb0;
+      border: none;
+      margin-top: 10px;
     }
 
     .nos {
       text-align: center;
-      color: white;
-      display: none;
       margin-bottom: 80px;
+      display: none;
+      font-size: 14px;
+      opacity: 0.8;
     }
   </style>
 </head>
@@ -129,18 +154,18 @@
 
   <div class="top-bar">
     <a href="#">Tabela</a>
-    <a href="#">Gráfico Pizza</a>
-    <a href="#">Gráfico Barras</a>
+    <a href="#">Pizza</a>
+    <a href="#">Barras</a>
   </div>
 
   <div class="container">
     <div class="grafico">
-      <h2>Gráfico Pizza</h2>
+      <h2>Pizza</h2>
       <img src="https://loyal-sapphire-hpke3bfl0l.edgeone.app/pizza.png">
     </div>
 
     <div class="grafico">
-      <h2>Gráfico Barras</h2>
+      <h2>Barras</h2>
       <img src="https://elaborate-rose-bnlamm0kt8.edgeone.app/tabela.png">
     </div>
   </div>
@@ -153,8 +178,8 @@
   <div class="overlay" id="overlay">
     <div class="card">
       <h2>Calculadora 2000</h2>
-      <p>Digite: media, moda ou mediana</p>
-      <input type="text" id="operacao"><br><br>
+      <input type="text" id="operacao" placeholder="media, moda ou mediana">
+      <br><br>
       <button id="calcularBtn">Calcular</button>
       <button id="fecharBtn">Fechar</button>
       <p id="resultado"></p>
@@ -162,52 +187,49 @@
   </div>
 
   <div class="bottom-bar">
-    <button id="abrirCalc">Calculadora 2000</button>
+    <button id="abrirCalc">Calculadora</button>
     <button id="btnNos">Nós</button>
   </div>
 
   <div class="nos" id="nos">
-    Site confeccionado por: João Guilherme, Guilherme Batista, Nathan
+    Site feito por: João Guilherme, Guilherme Batista, Nathan
   </div>
 
   <script>
     const overlay = document.getElementById("overlay");
-    const abrirBtn = document.getElementById("abrirCalc");
-    const fecharBtn = document.getElementById("fecharBtn");
-    const calcularBtn = document.getElementById("calcularBtn");
 
-    abrirBtn.addEventListener("click", () => {
+    document.getElementById("abrirCalc").onclick = () => {
       overlay.style.display = "flex";
-    });
+    };
 
-    fecharBtn.addEventListener("click", () => {
+    document.getElementById("fecharBtn").onclick = () => {
       overlay.style.display = "none";
-    });
+    };
 
-    calcularBtn.addEventListener("click", () => {
-      const numeros = [253, 247];
+    overlay.onclick = (e) => {
+      if (e.target === overlay) overlay.style.display = "none";
+    };
+
+    document.getElementById("calcularBtn").onclick = () => {
       const op = document.getElementById("operacao").value.toLowerCase().trim();
-
-      let resultado = "";
+      let res = "";
 
       if (op === "media") {
-        resultado = (253 + 247) / 2;
-        resultado = "Média = " + resultado;
+        res = "Média = " + (253 + 247) / 2;
       } else if (op === "moda") {
-        resultado = "Moda = 253, 247";
+        res = "Moda = 253, 247";
       } else if (op === "mediana") {
-        resultado = (253 + 247) / 2;
-        resultado = "Mediana = " + resultado;
+        res = "Mediana = " + (253 + 247) / 2;
       } else {
-        resultado = "Digite media, moda ou mediana";
+        res = "Digite certo 😅";
       }
 
-      document.getElementById("resultado").innerText = resultado;
-    });
+      document.getElementById("resultado").innerText = res;
+    };
 
-    document.getElementById("btnNos").addEventListener("click", () => {
+    document.getElementById("btnNos").onclick = () => {
       document.getElementById("nos").style.display = "block";
-    });
+    };
   </script>
 
 </body>
