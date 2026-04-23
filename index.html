@@ -8,7 +8,7 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial;
       background: linear-gradient(135deg, #2b6cb0, #1e3c72);
       color: white;
     }
@@ -22,61 +22,42 @@
       justify-content: center;
       gap: 30px;
       background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-    }
-
-    .top-bar a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
     }
 
     .container {
       display: flex;
       justify-content: space-around;
       margin-top: 90px;
-      padding: 20px;
-      flex-wrap: wrap;
-      gap: 20px;
     }
 
     .grafico {
       background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
       padding: 20px;
+      border-radius: 10px;
       text-align: center;
     }
 
     .grafico img {
       width: 280px;
-      border-radius: 10px;
     }
 
     .tabela {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 20px;
     }
 
     .tabela img {
       width: 80%;
       max-width: 600px;
-      border-radius: 12px;
     }
 
     button {
-      padding: 10px 18px;
+      padding: 10px;
       border: none;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #2b6cb0, #4c8ed9);
+      border-radius: 6px;
+      background: #2b6cb0;
       color: white;
-      font-weight: bold;
       cursor: pointer;
-    }
-
-    button:hover {
-      transform: scale(1.05);
     }
 
     .bottom-bar {
@@ -90,7 +71,6 @@
       background: rgba(0,0,0,0.7);
     }
 
-    /* NOS */
     .nos-container {
       position: relative;
     }
@@ -101,14 +81,11 @@
       left: 50%;
       transform: translateX(-50%);
       font-size: 11px;
-      background: rgba(0,0,0,0.8);
-      padding: 5px 8px;
-      border-radius: 6px;
+      background: black;
+      padding: 5px;
       display: none;
-      white-space: nowrap;
     }
 
-    /* POPUP */
     .overlay {
       position: fixed;
       width: 100%;
@@ -117,107 +94,103 @@
       display: none;
       justify-content: center;
       align-items: center;
-      z-index: 2000;
     }
 
     .card {
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      padding: 30px;
-      border-radius: 15px;
+      background: white;
+      color: black;
+      padding: 20px;
+      border-radius: 10px;
       text-align: center;
-      width: 300px;
     }
 
     input {
-      padding: 8px;
-      width: 80%;
-      border-radius: 6px;
-      border: none;
+      padding: 5px;
     }
   </style>
 </head>
 <body>
 
-  <div class="top-bar">
-    <a href="#">Tabela</a>
-    <a href="#">Pizza</a>
-    <a href="#">Barras</a>
+<div class="top-bar">
+  <span>Tabela</span>
+  <span>Pizza</span>
+  <span>Barras</span>
+</div>
+
+<div class="container">
+  <div class="grafico">
+    <h2>Pizza</h2>
+    <img src="https://loyal-sapphire-hpke3bfl0l.edgeone.app/pizza.png">
   </div>
 
-  <div class="container">
-    <div class="grafico">
-      <h2>Pizza</h2>
-      <img src="https://loyal-sapphire-hpke3bfl0l.edgeone.app/pizza.png">
+  <div class="grafico">
+    <h2>Barras</h2>
+    <img src="https://mild-magenta-awv90mntvu.edgeone.app/grafico.png">
+  </div>
+</div>
+
+<div class="tabela">
+  <img src="https://outdoor-beige-bv4bfzfcpq.edgeone.app/tabela.png">
+</div>
+
+<!-- CALCULADORA -->
+<div class="overlay" id="overlay">
+  <div class="card">
+    <h2>Calculadora</h2>
+    <input id="operacao" placeholder="media, moda ou mediana">
+    <br><br>
+    <button onclick="calcular()">Calcular</button>
+    <button onclick="fechar()">Fechar</button>
+    <p id="resultado"></p>
+  </div>
+</div>
+
+<!-- BARRA -->
+<div class="bottom-bar">
+  <button onclick="abrir()">Calculadora</button>
+
+  <div class="nos-container">
+    <div class="nos-texto" id="nosTexto">
+      João Guilherme, Guilherme Batista, Nathan
     </div>
-
-    <div class="grafico">
-      <h2>Barras</h2>
-      <img src="https://mild-magenta-awv90mntvu.edgeone.app/grafico.png">
-    </div>
+    <button onclick="mostrarNos()">Nós</button>
   </div>
+</div>
 
-  <div class="tabela">
-    <img src="https://outdoor-beige-bv4bfzfcpq.edgeone.app/tabela.png">
-  </div>
+<script>
+function abrir() {
+  document.getElementById("overlay").style.display = "flex";
+}
 
-  <!-- CALCULADORA -->
-  <div class="overlay" id="overlay">
-    <div class="card">
-      <h2>Calculadora 2000</h2>
-      <input type="text" id="operacao" placeholder="media, moda ou mediana">
-      <br><br>
-      <button id="calcularBtn">Calcular</button>
-      <button id="fecharBtn">Fechar</button>
-      <p id="resultado"></p>
-    </div>
-  </div>
+function fechar() {
+  document.getElementById("overlay").style.display = "none";
+}
 
-  <!-- BARRA -->
-  <div class="bottom-bar">
-    <button id="abrirCalc">Calculadora</button>
+function calcular() {
+  const op = document.getElementById("operacao").value.toLowerCase().trim();
 
-    <div class="nos-container">
-      <div class="nos-texto" id="nosTexto">
-        João Guilherme, Guilherme Batista, Nathan
-      </div>
-      <button id="btnNos">Nós</button>
-    </div>
-  </div>
+  let res = "";
 
-  <script>
-    const overlay = document.getElementById("overlay");
+  if (op === "media") {
+    res = (253 + 247) / 2;
+    res = "Média = " + res;
+  } else if (op === "moda") {
+    res = "Moda = 253, 247";
+  } else if (op === "mediana") {
+    res = (253 + 247) / 2;
+    res = "Mediana = " + res;
+  } else {
+    res = "Digite certo";
+  }
 
-    document.getElementById("abrirCalc").onclick = () => {
-      overlay.style.display = "flex";
-    };
+  document.getElementById("resultado").innerText = res;
+}
 
-    document.getElementById("fecharBtn").onclick = () => {
-      overlay.style.display = "none";
-    };
-
-    document.getElementById("calcularBtn").onclick = () => {
-      const op = document.getElementById("operacao").value.toLowerCase().trim();
-      let res = "";
-
-      if (op === "media") {
-        res = "Média = " + (253 + 247) / 2;
-      } else if (op === "moda") {
-        res = "Moda = 253, 247";
-      } else if (op === "mediana") {
-        res = "Mediana = " + (253 + 247) / 2;
-      } else {
-        res = "Digite certo 😅";
-      }
-
-      document.getElementById("resultado").innerText = res;
-    };
-
-    document.getElementById("btnNos").onclick = () => {
-      const texto = document.getElementById("nosTexto");
-      texto.style.display = texto.style.display === "block" ? "none" : "block";
-    };
-  </script>
+function mostrarNos() {
+  const t = document.getElementById("nosTexto");
+  t.style.display = t.style.display === "block" ? "none" : "block";
+}
+</script>
 
 </body>
 </html>
