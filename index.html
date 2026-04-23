@@ -2,7 +2,6 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mega Cavaleiro X P.E.K.K.A</title>
 
   <style>
@@ -14,9 +13,6 @@
     }
 
     .top-bar {
-      position: fixed;
-      top: 0;
-      width: 100%;
       padding: 15px;
       display: flex;
       justify-content: center;
@@ -27,7 +23,7 @@
     .container {
       display: flex;
       justify-content: space-around;
-      margin-top: 90px;
+      margin-top: 30px;
     }
 
     .grafico {
@@ -51,15 +47,6 @@
       max-width: 600px;
     }
 
-    button {
-      padding: 10px;
-      border: none;
-      border-radius: 6px;
-      background: #2b6cb0;
-      color: white;
-      cursor: pointer;
-    }
-
     .bottom-bar {
       position: fixed;
       bottom: 0;
@@ -69,6 +56,15 @@
       justify-content: center;
       gap: 40px;
       background: rgba(0,0,0,0.7);
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #2b6cb0;
+      color: white;
+      cursor: pointer;
     }
 
     .nos-container {
@@ -84,28 +80,6 @@
       background: black;
       padding: 5px;
       display: none;
-    }
-
-    .overlay {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      display: none;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .card {
-      background: white;
-      color: black;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-    }
-
-    input {
-      padding: 5px;
     }
   </style>
 </head>
@@ -133,21 +107,11 @@
   <img src="https://outdoor-beige-bv4bfzfcpq.edgeone.app/tabela.png">
 </div>
 
-<!-- CALCULADORA -->
-<div class="overlay" id="overlay">
-  <div class="card">
-    <h2>Calculadora</h2>
-    <input id="operacao" placeholder="media, moda ou mediana">
-    <br><br>
-    <button onclick="calcular()">Calcular</button>
-    <button onclick="fechar()">Fechar</button>
-    <p id="resultado"></p>
-  </div>
-</div>
-
-<!-- BARRA -->
 <div class="bottom-bar">
-  <button onclick="abrir()">Calculadora</button>
+  <!-- AQUI ENTRA NA OUTRA PÁGINA -->
+  <a href="calculadora.html">
+    <button>Calculadora</button>
+  </a>
 
   <div class="nos-container">
     <div class="nos-texto" id="nosTexto">
@@ -158,34 +122,6 @@
 </div>
 
 <script>
-function abrir() {
-  document.getElementById("overlay").style.display = "flex";
-}
-
-function fechar() {
-  document.getElementById("overlay").style.display = "none";
-}
-
-function calcular() {
-  const op = document.getElementById("operacao").value.toLowerCase().trim();
-
-  let res = "";
-
-  if (op === "media") {
-    res = (253 + 247) / 2;
-    res = "Média = " + res;
-  } else if (op === "moda") {
-    res = "Moda = 253, 247";
-  } else if (op === "mediana") {
-    res = (253 + 247) / 2;
-    res = "Mediana = " + res;
-  } else {
-    res = "Digite certo";
-  }
-
-  document.getElementById("resultado").innerText = res;
-}
-
 function mostrarNos() {
   const t = document.getElementById("nosTexto");
   t.style.display = t.style.display === "block" ? "none" : "block";
