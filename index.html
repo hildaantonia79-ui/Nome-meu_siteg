@@ -20,8 +20,6 @@ body {
   bottom: 0;
   left: 0;
   width: 220px;
-  opacity: 0.15;
-  mix-blend-mode: lighten;
   pointer-events: none;
 }
 
@@ -30,8 +28,6 @@ body {
   bottom: 0;
   right: 0;
   width: 220px;
-  opacity: 0.15;
-  mix-blend-mode: lighten;
   pointer-events: none;
 }
 
@@ -194,8 +190,8 @@ button {
 <body>
 
 <!-- IMAGENS -->
-<img src="https://th.bing.com/th/id/OIP.aHItRlopN0T9d_PBs0FLUgAAAA?w=133&h=180&c=7&r=0&o=7&pid=1.7&rm=3" class="img-left">
-<img src="https://th.bing.com/th/id/OIP.yPk5WXjoCEbUcGspT8SRvAHaHa?w=194&h=195&c=7&r=0&o=7&pid=1.7&rm=3" class="img-right">
+<img src="https://light-fuchsia-9juuq0aywz.edgeone.app/mega%20gay%20melhor%20-%20Editado.png" class="img-left">
+<img src="https://male-moccasin-qrtcdnifhh.edgeone.app/pekka%20melhor%20-%20Editado.png" class="img-right">
 
 <!-- TOPO -->
 <div class="top-bar">
@@ -294,4 +290,11 @@ function moda() {
 function mediana() {
   let n = pegarNumeros().sort((a,b)=>a-b);
   if (!n.length) return;
-  let
+  let m = Math.floor(n.length/2);
+  document.getElementById("res").innerText =
+    "Mediana: " + (n.length%2 ? n[m] : (n[m-1]+n[m])/2);
+}
+
+function limpar() {
+  document.getElementById("numeros").value = "";
+  document.getElementById("res").inner
