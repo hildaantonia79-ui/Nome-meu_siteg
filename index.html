@@ -11,7 +11,7 @@ body {
   background: linear-gradient(135deg, #2b6cb0, #805ad5);
   font-family: Arial, sans-serif;
   overflow-x: hidden;
-  padding-bottom: 120px; /* 🔥 CORREÇÃO AQUI */
+  padding-bottom: 120px;
 }
 
 /* IMAGENS */
@@ -71,6 +71,7 @@ body {
 
 .grafico img {
   width: 300px;
+  cursor: pointer;
 }
 
 /* TABELA */
@@ -82,6 +83,7 @@ body {
 .tabela img {
   width: 90%;
   max-width: 600px;
+  cursor: pointer;
 }
 
 /* CALCULADORA */
@@ -167,6 +169,25 @@ button {
   opacity: 1;
   transform: translateX(-50%) scale(1);
 }
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 5px solid white;
+  border-radius: 10px;
+}
 </style>
 </head>
 
@@ -178,26 +199,26 @@ button {
 
 <!-- TOPO -->
 <div class="top-bar">
-  <a href="#">Tabela</a>
-  <a href="#">Pizza</a>
-  <a href="#">Barras</a>
+  <a href="https://outdoor-beige-bv4bfzfcpq.edgeone.app/tabela.png" target="_blank">Tabela</a>
+  <a href="https://loyal-sapphire-hpke3bfl0l.edgeone.app/pizza.png" target="_blank">Pizza</a>
+  <a href="https://mild-magenta-awv90mntvu.edgeone.app/grafico.png" target="_blank">Barras</a>
 </div>
 
 <!-- CONTEÚDO -->
 <div class="container">
   <div class="grafico">
     <h2>Pizza</h2>
-    <img src="https://loyal-sapphire-hpke3bfl0l.edgeone.app/pizza.png">
+    <img src="https://loyal-sapphire-hpke3bfl0l.edgeone.app/pizza.png" onclick="abrirOverlay(this.src)">
   </div>
 
   <div class="grafico">
     <h2>Barras</h2>
-    <img src="https://mild-magenta-awv90mntvu.edgeone.app/grafico.png">
+    <img src="https://mild-magenta-awv90mntvu.edgeone.app/grafico.png" onclick="abrirOverlay(this.src)">
   </div>
 </div>
 
 <div class="tabela">
-  <img src="https://outdoor-beige-bv4bfzfcpq.edgeone.app/tabela.png">
+  <img src="https://outdoor-beige-bv4bfzfcpq.edgeone.app/tabela.png" onclick="abrirOverlay(this.src)">
 </div>
 
 <!-- CALCULADORA -->
@@ -230,6 +251,11 @@ button {
 <!-- NÓS -->
 <div class="nos" id="nos">
   João Guilherme • Guilherme Batista • Nathan
+</div>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="fecharOverlay()">
+  <img id="overlayImg" src="">
 </div>
 
 <script>
@@ -266,22 +292,3 @@ function moda() {
 }
 
 function mediana() {
-  let n = pegarNumeros().sort((a,b)=>a-b);
-  if (!n.length) return;
-  let m = Math.floor(n.length/2);
-  document.getElementById("res").innerText =
-    "Mediana: " + (n.length%2 ? n[m] : (n[m-1]+n[m])/2);
-}
-
-function limpar() {
-  document.getElementById("numeros").value = "";
-  document.getElementById("res").innerText = "";
-}
-
-function mostrarNos() {
-  document.getElementById("nos").classList.toggle("ativo");
-}
-</script>
-
-</body>
-</html>
