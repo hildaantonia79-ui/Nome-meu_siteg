@@ -20,7 +20,8 @@ body {
   bottom: 0;
   left: 0;
   width: 220px;
-  opacity: 0.7; /* 🔥 Opacidade ajustada do Mega Cavaleiro */
+  opacity: 0.15;
+  mix-blend-mode: lighten;
   pointer-events: none;
 }
 
@@ -29,6 +30,8 @@ body {
   bottom: 0;
   right: 0;
   width: 220px;
+  opacity: 0.15;
+  mix-blend-mode: lighten;
   pointer-events: none;
 }
 
@@ -191,8 +194,8 @@ button {
 <body>
 
 <!-- IMAGENS -->
-<img src="https://light-fuchsia-9juuq0aywz.edgeone.app/mega%20gay%20melhor%20-%20Editado.png" class="img-left">
-<img src="https://male-moccasin-qrtcdnifhh.edgeone.app/pekka%20melhor%20-%20Editado.png" class="img-right">
+<img src="https://light-fuchsia-9juuq0aywz.edgeone.app/mega%20gay%20melhor%20-%20Editado.png">
+<img src="https://male-moccasin-qrtcdnifhh.edgeone.app/pekka%20melhor%20-%20Editado.png: essa e a pekka.png">
 
 <!-- TOPO -->
 <div class="top-bar">
@@ -291,5 +294,4 @@ function moda() {
 function mediana() {
   let n = pegarNumeros().sort((a,b)=>a-b);
   if (!n.length) return;
-  let m = Math.floor(n.length/2);
-  document.getElementById("
+  let
