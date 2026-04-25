@@ -1,3 +1,307 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mega Cavaleiro X P.E.K.K.A</title>
+
+<style>
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #2b6cb0, #805ad5);
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  padding-bottom: 120px;
+}
+
+/* IMAGENS */
+.img-left {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 220px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.img-right {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 220px;
+  pointer-events: none;
+}
+
+/* TOPO */
+.top-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #111d2b;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  z-index: 1000;
+}
+
+.top-bar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* CONTEÚDO */
+.container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 80px;
+  flex-wrap: wrap;
+}
+
+.grafico {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.grafico img {
+  width: 300px;
+  cursor: pointer;
+}
+
+/* TABELA */
+.tabela {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.tabela img {
+  width: 90%;
+  max-width: 600px;
+  cursor: pointer;
+}
+
+/* CALCULADORA */
+.calculadora-box {
+  position: fixed;
+  bottom: -500px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  text-align: center;
+  transition: 0.5s;
+}
+
+.calculadora-box.ativa {
+  bottom: 80px;
+}
+
+input {
+  width: 90%;
+  padding: 8px;
+  margin: 5px;
+}
+
+button {
+  padding: 8px 10px;
+  margin: 5px;
+  border: none;
+  background: #2b6cb0;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.fechar {
+  background: red;
+}
+
+/* BARRA INFERIOR */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #111d2b;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.bottom-bar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.bottom-bar img {
+  width: 30px;
+  margin-right: 5px;
+}
+
+/* NÓS */
+.nos {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.6);
+  background: #111d2b;
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: white;
+  font-size: 10px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.nos.ativo {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 5px solid white;
+  border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- IMAGENS -->
+<img src="https://light-fuchsia-9juuq0aywz.edgeone.app/mega%20gay%20melhor%20-%20Editado.png" class="img-left">
+<img src="https://male-moccasin-qrtcdnifhh.edgeone.app/pekka%20melhor%20-%20Editado.png" class="img-right">
+
+<!-- TOPO -->
+<div class="top-bar">
+  <a href="https://outdoor-beige-bv4bfzfcpq.edgeone.app/tabela.png" target="_blank">Tabela</a>
+  <a href="https://loyal-sapphire-hpke3bfl0l.edgeone.app/pizza.png" target="_blank">Pizza</a>
+  <a href="https://mild-magenta-awv90mntvu.edgeone.app/grafico.png" target="_blank">Barras</a>
+</div>
+
+<!-- CONTEÚDO -->
+<div class="container">
+  <div class="grafico">
+    <h2>Pizza</h2>
+    <img src="https://loyal-sapphire-hpke3bfl0l.edgeone.app/pizza.png" onclick="abrirOverlay(this.src)">
+  </div>
+
+  <div class="grafico">
+    <h2>Barras</h2>
+    <img src="https://mild-magenta-awv90mntvu.edgeone.app/grafico.png" onclick="abrirOverlay(this.src)">
+  </div>
+</div>
+
+<div class="tabela">
+  <img src="https://outdoor-beige-bv4bfzfcpq.edgeone.app/tabela.png" onclick="abrirOverlay(this.src)">
+</div>
+
+<!-- CALCULADORA -->
+<div class="calculadora-box" id="calcBox">
+  <h2>Calculadora 2000</h2>
+  <input id="numeros" placeholder="Ex: 10, 20, 30">
+
+  <br>
+
+  <button onclick="media()">Média</button>
+  <button onclick="moda()">Moda</button>
+  <button onclick="mediana()">Mediana</button>
+  <button onclick="limpar()">Limpar</button>
+
+  <p id="res"></p>
+
+  <button class="fechar" onclick="fecharCalc()">Fechar</button>
+</div>
+
+<!-- BARRA -->
+<div class="bottom-bar">
+  <a href="#" onclick="abrirCalc()">Calculadora 2000</a>
+  <a href="#" onclick="mostrarNos()">Nós</a>
+  <a href="https://hard-aquamarine-bicztuf3qw.edgeone.app/e%20esse%20luck.jpeg" target="_blank">
+    <img src="https://hard-aquamarine-bicztuf3qw.edgeone.app/e%20esse%20luck.jpeg">
+    Outros
+  </a>
+</div>
+
+<!-- NÓS -->
+<div class="nos" id="nos">
+  Criado por: João Guilherme • Nathan • Guilherme Batista
+</div>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="fecharOverlay()">
+  <img id="overlayImg" src="">
+</div>
+
+<script>
+function abrirCalc() {
+  document.getElementById("calcBox").classList.add("ativa");
+}
+
+function fecharCalc() {
+  document.getElementById("calcBox").classList.remove("ativa");
+}
+
+function pegarNumeros() {
+  return document.getElementById("numeros").value
+    .split(",")
+    .map(n => Number(n.trim()))
+    .filter(n => !isNaN(n));
+}
+
+function media() {
+  let n = pegarNumeros();
+  if (!n.length) return;
+  document.getElementById("res").innerText =
+    "Média: " + (n.reduce((a,b)=>a+b,0)/n.length);
+}
+
+function moda() {
+  let n = pegarNumeros();
+  if (!n.length) return;
+  let f = {};
+  n.forEach(x => f[x]=(f[x]||0)+1);
+  let max = Math.max(...Object.values(f));
+  document.getElementById("res").innerText =
+    "Moda: " + Object.keys(f).filter(x=>f[x]==max).join(",");
+}
+
+function mediana() {
+  let n = pegarNumeros().sort((a,b)=>a-b);
+  if (!n.length) return;
+  let m = Math.floor(n.length/2);
+  document.getElementById("res").innerText =
+    "Mediana: " + (n.length%2 ? n[m] : (n[m-1]+n[m])/2);
+}
+
+function limpar() {
+  document.getElementById("numeros").value = "";
+  document.getElementById("res").innerText = "";
+}
+
 function mostrarNos() {
   let n = document.getElementById("nos");
   n.classList.add("ativo");
@@ -5,11 +309,6 @@ function mostrarNos() {
   setTimeout(() => {
     n.classList.remove("ativo");
   }, 3000);
-}
-
-function limpar() {
-  document.getElementById("numeros").value = "";
-  document.getElementById("res").innerText = "";
 }
 
 function abrirOverlay(src) {
@@ -20,3 +319,8 @@ function abrirOverlay(src) {
 function fecharOverlay() {
   document.getElementById("overlay").style.display = "none";
 }
+</script>
+
+</body>
+</html>
+```
