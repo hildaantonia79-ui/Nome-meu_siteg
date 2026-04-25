@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="zFeFtbes2t7tlFMDzAXzDdI7D3N4VhPKIXmQO02iMQM" />
+  <title>Mega Cavaleiro X P.E.K.K.A</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #2b6cb0, #805ad5);
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+    }
+
+    /* Barra no topo */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #111d2b;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+
+    .top-bar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .top-bar a:hover {
+      color: #ffcc00;
+    }
+
+    /* Container central para os gráficos */
+    .container {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      margin-top: 80px;
+      padding: 20px;
+    }
+
+    .grafico {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .grafico img {
+      width: 300px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .grafico h2 {
+      color: #2b6cb0;
+    }
+
+    /* Seção da tabela abaixo */
+    .tabela {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      padding: 20px;
+    }
+
+    .tabela img {
+      width: 600px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Card da Calculadora 2000 */
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      padding: 30px;
+      margin: 40px auto;
+      text-align: center;
+      width: 400px;
+    }
+    input {
+      margin: 5px;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 80%;
+    }
+    button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 6px;
+      background: #2b6cb0;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #805ad5;
+    }
+
+    /* Barra inferior */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 40px;
+      background: linear-gradient(90deg, #2b6cb0, #805ad5);
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.3);
+    }
+
+    .bottom-bar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 20px;
+      transition: color 0.3s ease;
+    }
+
+    .bottom-bar a:hover {
+      color: #ffcc00;
+    }
+
+    /* Texto pequeno dos autores */
+    .nos {
+      text-align: center;
+      font-size: 12px;
+      color: white;
+      margin-top: 10px;
+      display: none; /* começa escondido */
+    }
+  </style>
+</head>
+<body>
+  <!-- Barra de navegação superior -->
+  <div class="top-bar">
+    <a href="https://outdoor-beige-bv4bfzfcpq.edgeone.app/tabela.png" target="_blank">Tabela</a>
+    <a href="https://loyal-sapphire-hpke3bfl0l.edgeone.app/pizza.png" target="_blank">Gráfico Pizza</a>
+    <a href="https://elaborate-rose-bnlamm0kt8.edgeone.app/tabela.png" target="_blank">Gráfico Barras</a>
+  </div>
+
+  <!-- Container com os gráficos -->
+  <div class="container">
+    <div class="grafico">
+      <h2>Gráfico de Pizza</h2>
+      <img src="https://loyal-sapphire-hpke3bfl0l.edgeone.app/pizza.png" alt="Gráfico Pizza">
+    </div>
+
+    <div class="grafico">
+      <h2>Gráfico de Barras</h2>
+      <img src="https://elaborate-rose-bnlamm0kt8.edgeone.app/tabela.png" alt="Gráfico Barras">
+    </div>
+  </div>
+
+  <!-- Tabela centralizada abaixo -->
+  <div class="tabela">
+    <img src="https://outdoor-beige-bv4bfzfcpq.edgeone.app/tabela.png" alt="Tabela comparativa">
+  </div>
+
+  <!-- Calculadora 2000 -->
+  <div class="card" id="calculadora">
+    <h1>Calculadora 2000</h1>
+    <p>Digite o cálculo desejado (media, moda ou mediana):</p>
+    <input type="text" id="operacao" placeholder="Ex: media"><br><br>
+    <button onclick="calcular2000()">Calcular</button>
+    <p id="resultado"></p>
+  </div>
+
+  <!-- Barra inferior -->
+  <div class="bottom-bar">
+    <a href="#calculadora">Calculadora 2000</a>
+    <a href="javascript:void(0)" onclick="mostrarNos()">Nós</a>
+  </div>
+
+  <!-- Texto dos autores -->
+  <div class="nos" id="nos">
+    Site confeccionado por: João Guilherme, Guilherme Batista, Nathan
+  </div>
+
+  <script>
+    function calcular2000() {
+      const numeros = [253, 247]; // dados dos gráficos
+      const operacao = document.getElementById('operacao').value.toLowerCase().trim();
+
+      if (operacao === "media") {
+        const soma = numeros.reduce((acc, val) => acc + val, 0);
+        const media = soma / numeros.length;
+        document.getElementById('resultado').innerHTML = `📊 Média dos gráficos = ${media}`;
+      } 
+      else if (operacao === "moda") {
+        const freq = {};
+        numeros.forEach(n => freq[n] = (freq[n] || 0) + 1);
+        const maxFreq = Math.max(...Object.values(freq));
+        const moda = Object.keys(freq).filter(n => freq[n] === maxFreq).join(", ");
+        document.getElementById('resultado').innerHTML = `📊 Moda dos gráficos = ${moda}`;
+      } 
+      else if (operacao === "mediana") {
+        const ordenados = [...numeros].sort((a, b) => a - b);
+        const meio = Math.floor(ordenados.length / 2);
+        const mediana = (ordenados[meio - 1] + ordenados[meio]) / 2;
+        document.getElementById('resultado').innerHTML = `📊 Mediana dos gráficos = ${mediana}`;
+      } 
+      else {
+        document.getElementById('resultado').innerHTML = "⚠️ Digite 'media', 'moda' ou 'mediana'.";
+      }
+    }
+
+    function mostrarNos() {
+      document.getElementById('nos').style.display = "block";
+    }
+  </script>
+</body>
+</html>
+
